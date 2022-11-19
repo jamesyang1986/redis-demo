@@ -1,21 +1,44 @@
 #include <stdio.h>
 #include "sds.h"
 #include "list.h"
+#include "dict.h"
 
 void testList();
 void testStr();
 
+void testDict();
+
 int main() {
     printf("Hello, World!\n");
     testStr();
+
     testList();
+
+    testDict();
 
     return 0;
 }
 
+void testDict() {
+    dict *adict = dictCreate();
+    dictAdd(adict, "aaa", "cc");
+    dictEntry  *entry = dictFind(adict, "aaa");
+    printf("test add, original value:%s, real value is:%s\n", "cc", entry->val);
+
+    dictReplace(adict, "aaa", "23452345");
+    entry = dictFind(adict, "aaa");
+    printf("test replace, original value:%s, real value is:%s\n", "cc", entry->val);
+
+    dictDelete(adict, "aaa");
+    entry = dictFind(adict, "aaa");
+    if(entry == NULL){
+        printf("test del key:%s success!", "aaa");
+    }
+}
+
 void testStr() {
     char *str = sdsnew("OK");
-    printf("the formated str is:%s\n", str);
+    printf("the sds str is:%s\n", str);
 }
 
 void testList() {

@@ -95,8 +95,6 @@ void listDelNode(list *list, listNode *node) {
         }
     }
 
-
-
 }
 
 listNode *listSearchKey(list *list, void *key) {
@@ -129,5 +127,4 @@ listNode *listIndex(list *list, int index) {
         return current;
 
     return NULL;
-
 }
